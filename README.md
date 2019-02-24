@@ -7,7 +7,7 @@ A simple web component for using [filament](https://github.com/google/filament/)
 ```html
 <script src="https://cdn.jsdelivr.net/npm/filament@1.1.0/filament.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.8.1/gl-matrix-min.js"></script>
-<script src="../../pbr-scene.js"></script>
+<script src="https://unpkg.com/pbr-scene@latest/pbr-scene.js"></script>
 <pbr-scene width="500" height="500">
   <pbr-asset name="sz_mat" src="assets/textured.filamat"></pbr-asset>
   <pbr-asset name="sz_mesh" src="assets/suzanne.filamesh"></pbr-asset>
