@@ -179,12 +179,21 @@ class PBREnvironment extends PBRBaseElement {
 
   build(engine,scene){
     if(this.hasAttribute("indirect-map")){
-      const indirectLight = engine.createIblFromKtx(this.getAssetAttribute("indirect-map"));
+      let url = this.getAssetAttribute("indirect-map");
+      if(url.indexOf(".ktx") == -1){
+        throw new Error("your skybox needs to be of type .ktx, use the default skybox or generate your own with cmgen")
+      }
+      const indirectLight = engine.createIblFromKtx(url);
       scene.setIndirectLight(indirectLight);
       indirectLight.setIntensity(this.getFloatAttribute("intensity",100000));
     }
     if(this.hasAttribute("sky-map")){
-      const skybox = engine.createSkyFromKtx(this.getAssetAttribute("sky-map"));
+
+      let url = this.getAssetAttribute("sky-map");
+      if(url.indexOf(".ktx") == -1){
+        throw new Error("your skybox needs to be of type .ktx, use the default skybox or generate your own with cmgen")
+      }
+      const skybox = engine.createSkyFromKtx(url);
       scene.setSkybox(skybox);
     }
   }
