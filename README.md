@@ -17,7 +17,7 @@ The most basic cube with no material.
 ```html
 <script src="https://cdn.jsdelivr.net/npm/filament@1.1.0/filament.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.8.1/gl-matrix-min.js"></script>
-<script src="../../pbr-scene.js"></script>
+<script src="http://unpkg.com/pbr-scene@latest/pbr-scene.js"></script>
 <pbr-scene width="500" height="500">
   <pbr-asset name="c_mesh" src="cube.filamesh"></pbr-asset>
   <pbr-camera></pbr-camera>
@@ -26,6 +26,30 @@ The most basic cube with no material.
 ```
 
 See live [demo](https://richardanaya.github.io/pbr-scene/examples/cube/index.html)
+
+# Plastic Cube
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/filament@1.1.0/filament.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.8.1/gl-matrix-min.js"></script>
+<script src="http://unpkg.com/pbr-scene@latest/pbr-scene.js"></script>
+<pbr-scene width="500" height="500">
+  <pbr-asset name="c_mesh" src="cube.filamesh"></pbr-asset>
+  <pbr-asset name="pbr_mat" src="http://unpkg.com/pbr-scene@latest/pbr.filamat"></pbr-asset>
+  <pbr-asset name="c_alb" src="plastic_albedo.jpg"></pbr-asset>
+  <pbr-asset name="c_nrm" src="plastic_normal.jpg"></pbr-asset>
+  <pbr-asset name="c_rgh" src="plastic_roughness.jpg"></pbr-asset>
+  <pbr-sun></pbr-sun>
+  <pbr-camera></pbr-camera>
+  <pbr-model
+    material="pbr_mat"
+    mesh="c_mesh"
+    albedo="c_alb"
+    roughness="c_rgh"
+    normal="c_nrm"
+  ></pbr-model>
+</pbr-scene>
+```
 
 # Suzanne
 
@@ -36,7 +60,7 @@ See live [demo](https://richardanaya.github.io/pbr-scene/examples/cube/index.htm
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.8.1/gl-matrix-min.js"></script>
 <script src="https://unpkg.com/pbr-scene@latest/pbr-scene.js"></script>
 <pbr-scene width="500" height="500">
-  <pbr-asset name="sz_mat" src="assets/textured.filamat"></pbr-asset>
+  <pbr-asset name="pbr_mat" src="http://unpkg.com/pbr-scene@latest/pbr.filamat"></pbr-asset>
   <pbr-asset name="sz_mesh" src="assets/suzanne.filamesh"></pbr-asset>
   <pbr-asset name="sz_alb" src="assets/albedo_s3tc.ktx"></pbr-asset>
   <pbr-asset name="sz_ao" src="assets/ao_etc.ktx"></pbr-asset>
@@ -48,7 +72,7 @@ See live [demo](https://richardanaya.github.io/pbr-scene/examples/cube/index.htm
   <pbr-sun></pbr-sun>
   <pbr-environment indirect-map="env_indirect" sky-map="env_sky"></pbr-environment>
   <pbr-camera></pbr-camera>
-  <pbr-model material="sz_mat" mesh="sz_mesh" albedo="sz_alb" roughness="sz_rgh" normal="sz_nrm" metallic="sz_mtl" ao="sz_ao"></pbr-model>
+  <pbr-model material="pbr_mat" mesh="sz_mesh" albedo="sz_alb" roughness="sz_rgh" normal="sz_nrm" metallic="sz_mtl" ao="sz_ao"></pbr-model>
 </pbr-scene>
 ```
 
