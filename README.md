@@ -4,7 +4,7 @@ A simple web component for using [filament](https://github.com/google/filament/)
 
 # Before you start
 
-Google created a really awesome physically based rendering library with a catch that you have to convert your meshes and define materials to its `.filamesh` and `.filamat` formats. So don't be confused if you see these file formats you don't recognize. They are just generated from the tools `filamesh` and `matc` you can download here https://github.com/google/filament/releases.
+Google created a really awesome physically based rendering library that runs everywhere with a catch that you have to convert your meshes and define materials to its `.filamesh` and `.filamat` formats. So don't be confused if you see these file formats you don't recognize. They are just generated from the tools `filamesh` and `matc` you can download here https://github.com/google/filament/releases.
 
 If you need a material shader file, just use the default `pbr.mat`, or learn how to invent your own at https://google.github.io/filament/Materials.md.html
 
