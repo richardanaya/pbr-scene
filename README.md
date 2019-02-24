@@ -29,6 +29,10 @@ See live [demo](https://richardanaya.github.io/pbr-scene/examples/cube/index.htm
 
 # Plastic Cube
 
+A simple cube rotated with basic textures
+
+![no material cube](plastic_cube.png)
+
 ```html
 <script src="https://cdn.jsdelivr.net/npm/filament@1.1.0/filament.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.8.1/gl-matrix-min.js"></script>
@@ -42,6 +46,7 @@ See live [demo](https://richardanaya.github.io/pbr-scene/examples/cube/index.htm
   <pbr-sun></pbr-sun>
   <pbr-camera></pbr-camera>
   <pbr-model
+    rotation="200,200,0"
     material="pbr_mat"
     mesh="c_mesh"
     albedo="c_alb"
@@ -50,6 +55,8 @@ See live [demo](https://richardanaya.github.io/pbr-scene/examples/cube/index.htm
   ></pbr-model>
 </pbr-scene>
 ```
+
+See live [demo](https://richardanaya.github.io/pbr-scene/examples/plastic_cube/index.html)
 
 # Suzanne
 
