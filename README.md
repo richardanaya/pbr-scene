@@ -15,6 +15,7 @@ The most basic cube with no material.
 ![no material cube](cube.png)
 
 ```html
+<script src="https://unpkg.com/@webcomponents/webcomponentsjs@latest/webcomponents-loader.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/filament@1.1.0/filament.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.8.1/gl-matrix-min.js"></script>
 <script src="http://unpkg.com/pbr-scene@latest/pbr-scene.js"></script>
@@ -34,6 +35,7 @@ A simple cube rotated with basic textures
 ![no material cube](plastic_cube.png)
 
 ```html
+<script src="https://unpkg.com/@webcomponents/webcomponentsjs@latest/webcomponents-loader.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/filament@1.1.0/filament.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.8.1/gl-matrix-min.js"></script>
 <script src="http://unpkg.com/pbr-scene@latest/pbr-scene.js"></script>
@@ -63,6 +65,7 @@ See live [demo](https://richardanaya.github.io/pbr-scene/examples/plastic_cube/i
 ![pbr rendered suzanne](suzanne.png)
 
 ```html
+<script src="https://unpkg.com/@webcomponents/webcomponentsjs@latest/webcomponents-loader.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/filament@1.1.0/filament.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.8.1/gl-matrix-min.js"></script>
 <script src="https://unpkg.com/pbr-scene@latest/pbr-scene.js"></script>
