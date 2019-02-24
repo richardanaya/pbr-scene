@@ -261,33 +261,32 @@ class PBRModel extends PBRBaseElement {
     return ["material","albedo","mesh","roughness","metallic","normal","ao"];
   }
 
-  build(engine,scene,view,sampler){
-    let material = undefined;
-    if(this.hasAttribute("material")){
-      material = engine.createMaterial(this.getAssetAttribute("material"));
-      const matinstance = material.createInstance();
-      if(this.hasAttribute("albedo")){
-        const albedo = engine.createTextureFromKtx(this.getAssetAttribute("albedo"), {srgb: true});
-        matinstance.setTextureParameter('albedo', albedo, sampler)
+  loadMaterialTexture(engine,sampler,materialInstance,name){
+    if(this.hasAttribute(name)){
+      let url = this.getAssetAttribute(name);
+      let f = engine.createTextureFromPng;
+      if(url.indexOf(".ktx") !== -1){
+        f = engine.createTextureFromKtx
+      } else if(url.indexOf(".jpg") !== -1){
+        f = engine.createTextureFromJpeg
       }
-      if(this.hasAttribute("roughness")){
-        const roughness = engine.createTextureFromKtx(this.getAssetAttribute("roughness"), {srgb: true});
-        matinstance.setTextureParameter('roughness', roughness, sampler)
-      }
-      if(this.hasAttribute("metallic")){
-        const metallic = engine.createTextureFromKtx(this.getAssetAttribute("metallic"), {srgb: true});
-        matinstance.setTextureParameter('metallic', metallic, sampler)
-      }
-      if(this.hasAttribute("normal")){
-        const normal = engine.createTextureFromKtx(this.getAssetAttribute("normal"), {srgb: true});
-        matinstance.setTextureParameter('normal', normal, sampler)
-      }
-      if(this.hasAttribute("ao")){
-        const ao = engine.createTextureFromKtx(this.getAssetAttribute("ao"), {srgb: true});
-        matinstance.setTextureParameter('ao', ao, sampler)
-      }
+      const tex = f.call(engine,url,{srgb: true});
+      materialInstance.setTextureParameter(name, tex, sampler)
     }
-    const mesh = engine.loadFilamesh(this.getAssetAttribute("mesh"),material);
+  }
+
+  build(engine,scene,view,sampler){
+    let matinstance = undefined;
+    if(this.hasAttribute("material")){
+      let material = engine.createMaterial(this.getAssetAttribute("material"));
+      matinstance = material.createInstance();
+      this.loadMaterialTexture(engine,sampler,matinstance,"albedo");
+      this.loadMaterialTexture(engine,sampler,matinstance,"roughness");
+      this.loadMaterialTexture(engine,sampler,matinstance,"metallic");
+      this.loadMaterialTexture(engine,sampler,matinstance,"normal");
+      this.loadMaterialTexture(engine,sampler,matinstance,"ao");
+    }
+    const mesh = engine.loadFilamesh(this.getAssetAttribute("mesh"),matinstance);
     return mesh.renderable;
   }
 }

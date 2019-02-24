@@ -2,7 +2,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.8.1/gl-matrix-min.js"></script>
 <script src="../../pbr-scene.js"></script>
 <pbr-scene width="500" height="500">
-  <pbr-asset name="sz_mat" src="assets/textured.filamat"></pbr-asset>
+  <pbr-asset name="pbr_mat" src="../../pbr.filamat"></pbr-asset>
   <pbr-asset name="sz_mesh" src="assets/suzanne.filamesh"></pbr-asset>
   <pbr-asset name="sz_alb" src="assets/albedo_s3tc.ktx"></pbr-asset>
   <pbr-asset name="sz_ao" src="assets/ao_etc.ktx"></pbr-asset>
@@ -24,7 +24,7 @@
   ></pbr-environment>
   <pbr-camera></pbr-camera>
   <pbr-model
-    material="sz_mat"
+    material="pbr_mat"
     mesh="sz_mesh"
     albedo="sz_alb"
     roughness="sz_rgh"
