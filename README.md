@@ -4,6 +4,8 @@ A simple web component for using [filament](https://github.com/google/filament/)
 
 # Before you start
 
+*Filament ONLY works on [browsers with WebGL2](https://caniuse.com/#feat=webgl2)*
+
 Google created a really awesome physically based rendering library with a catch that you have to convert your meshes and define materials to its `.filamesh` and `.filamat` formats. So don't be confused if you see these file formats you don't recognize. They are just generated from the tools `filamesh` and `matc` you can download here https://github.com/google/filament/releases.
 
 * `.filamesh` - a very optimized mesh file generated from an (obj,fbx,gltf,.etc);
