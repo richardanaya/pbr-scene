@@ -2,6 +2,31 @@
 
 A simple web component for using [filament](https://github.com/google/filament/) easily.
 
+# Before you start
+
+Google created a really awesome physically based rendering library with a catch that you have to convert your meshes and materials to its `.filamesh` and `.filamat` formats. So don't be confused if you see these file formats you don't recognize. They are just generated from the tools `filamesh` and `matc` you can download here https://github.com/google/filament/releases.
+
+# Hello cube
+
+The most basic cube with no material.
+
+![no material cube](cube.png)
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/filament@1.1.0/filament.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.8.1/gl-matrix-min.js"></script>
+<script src="../../pbr-scene.js"></script>
+<pbr-scene width="500" height="500">
+  <pbr-asset name="c_mesh" src="cube.filamesh"></pbr-asset>
+  <pbr-camera></pbr-camera>
+  <pbr-model mesh="c_mesh"></pbr-model>
+</pbr-scene>
+```
+
+See live [demo](https://richardanaya.github.io/pbr-scene/examples/cube/index.html)
+
+# Suzanne
+
 ![pbr rendered suzanne](suzanne.png)
 
 ```html

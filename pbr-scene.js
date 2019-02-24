@@ -262,29 +262,32 @@ class PBRModel extends PBRBaseElement {
   }
 
   build(engine,scene,view,sampler){
-    const material = engine.createMaterial(this.getAssetAttribute("material"));
-    const matinstance = material.createInstance();
-    if(this.hasAttribute("albedo")){
-      const albedo = engine.createTextureFromKtx(this.getAssetAttribute("albedo"), {srgb: true});
-      matinstance.setTextureParameter('albedo', albedo, sampler)
+    let material = undefined;
+    if(this.hasAttribute("material")){
+      material = engine.createMaterial(this.getAssetAttribute("material"));
+      const matinstance = material.createInstance();
+      if(this.hasAttribute("albedo")){
+        const albedo = engine.createTextureFromKtx(this.getAssetAttribute("albedo"), {srgb: true});
+        matinstance.setTextureParameter('albedo', albedo, sampler)
+      }
+      if(this.hasAttribute("roughness")){
+        const roughness = engine.createTextureFromKtx(this.getAssetAttribute("roughness"), {srgb: true});
+        matinstance.setTextureParameter('roughness', roughness, sampler)
+      }
+      if(this.hasAttribute("metallic")){
+        const metallic = engine.createTextureFromKtx(this.getAssetAttribute("metallic"), {srgb: true});
+        matinstance.setTextureParameter('metallic', metallic, sampler)
+      }
+      if(this.hasAttribute("normal")){
+        const normal = engine.createTextureFromKtx(this.getAssetAttribute("normal"), {srgb: true});
+        matinstance.setTextureParameter('normal', normal, sampler)
+      }
+      if(this.hasAttribute("ao")){
+        const ao = engine.createTextureFromKtx(this.getAssetAttribute("ao"), {srgb: true});
+        matinstance.setTextureParameter('ao', ao, sampler)
+      }
     }
-    if(this.hasAttribute("roughness")){
-      const roughness = engine.createTextureFromKtx(this.getAssetAttribute("roughness"), {srgb: true});
-      matinstance.setTextureParameter('roughness', roughness, sampler)
-    }
-    if(this.hasAttribute("metallic")){
-      const metallic = engine.createTextureFromKtx(this.getAssetAttribute("metallic"), {srgb: true});
-      matinstance.setTextureParameter('metallic', metallic, sampler)
-    }
-    if(this.hasAttribute("normal")){
-      const normal = engine.createTextureFromKtx(this.getAssetAttribute("normal"), {srgb: true});
-      matinstance.setTextureParameter('normal', normal, sampler)
-    }
-    if(this.hasAttribute("ao")){
-      const ao = engine.createTextureFromKtx(this.getAssetAttribute("ao"), {srgb: true});
-      matinstance.setTextureParameter('ao', ao, sampler)
-    }
-    const mesh = engine.loadFilamesh(this.getAssetAttribute("mesh"), matinstance);
+    const mesh = engine.loadFilamesh(this.getAssetAttribute("mesh"),material);
     return mesh.renderable;
   }
 }
