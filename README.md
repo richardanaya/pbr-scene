@@ -2,6 +2,8 @@
 
 A simple web component for using [filament](https://github.com/google/filament/) easily.
 
+![pbr rendered suzanne](suzanne.png)
+
 ```html
 <script src="https://cdn.jsdelivr.net/npm/filament@1.1.0/filament.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.8.1/gl-matrix-min.js"></script>
