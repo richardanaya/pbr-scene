@@ -21,8 +21,8 @@ A simple web component for using [filament](https://github.com/google/filament/)
   <pbr-sun></pbr-sun>
   <pbr-environment indirect-map="env_indirect" sky-map="env_sky"></pbr-environment>
   <pbr-camera></pbr-camera>
-  <pbr-model material="sz_mat" mesh="sz_mesh" albedo="sz_alb" roughness="sz_rgh" normal="sz_nrm" metallic="sz_mtl" ao="sz_ao"[></pbr-model>
+  <pbr-model material="sz_mat" mesh="sz_mesh" albedo="sz_alb" roughness="sz_rgh" normal="sz_nrm" metallic="sz_mtl" ao="sz_ao"></pbr-model>
 </pbr-scene>
-
 ```
- 
+
+See live [demo](https://richardanaya.github.io/pbr-scene/examples/suzanne/index.html)
