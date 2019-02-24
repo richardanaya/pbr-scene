@@ -93,3 +93,64 @@ See live [demo](https://richardanaya.github.io/pbr-scene/examples/plastic_cube/i
 ```
 
 See live [demo](https://richardanaya.github.io/pbr-scene/examples/suzanne/index.html)
+
+# Animation
+
+Just to show a basic animation using attributes and some more camera properties
+
+```html
+<script src="https://unpkg.com/@webcomponents/webcomponentsjs@latest/webcomponents-loader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/filament@1.1.0/filament.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.8.1/gl-matrix-min.js"></script>
+<script src="https://unpkg.com/pbr-scene@latest/pbr-scene.js"></script>
+<pbr-scene width="500" height="500">
+  <pbr-asset name="pbr_mat" src="../../pbr.filamat"></pbr-asset>
+  <pbr-asset name="sz_mesh" src="assets/suzanne.filamesh"></pbr-asset>
+  <pbr-asset name="sz_alb" src="assets/albedo_s3tc.ktx"></pbr-asset>
+  <pbr-asset name="sz_ao" src="assets/ao_etc.ktx"></pbr-asset>
+  <pbr-asset name="sz_mtl" src="assets/metallic_etc.ktx"></pbr-asset>
+  <pbr-asset name="sz_nrm" src="assets/normal_etc.ktx"></pbr-asset>
+  <pbr-asset name="sz_rgh" src="assets/roughness_etc.ktx"></pbr-asset>
+  <pbr-asset
+    name="env_indirect"
+    src="assets/syferfontein_18d_clear_2k/syferfontein_18d_clear_2k_ibl_s3tc.ktx"
+  ></pbr-asset>
+  <pbr-asset
+    name="env_sky"
+    src="assets/syferfontein_18d_clear_2k/syferfontein_18d_clear_2k_skybox.ktx"
+  ></pbr-asset>
+  <pbr-sun color="rgb(123,0,0)"></pbr-sun>
+  <pbr-environment
+    indirect-map="env_indirect"
+    sky-map="env_sky"
+  ></pbr-environment>
+  <pbr-camera id="camera" position="0,4,4" look-at="0,0,1"></pbr-camera>
+  <pbr-model
+    id="thing"
+    position="0,1,2"
+    scale=".4,.4,.4"
+    rotation="0,0,0"
+    material="pbr_mat"
+    mesh="sz_mesh"
+    albedo="sz_alb"
+    roughness="sz_rgh"
+    normal="sz_nrm"
+    metallic="sz_mtl"
+    ao="sz_ao"
+  ></pbr-model>
+</pbr-scene>
+<script>
+  let i = 0;
+  function render() {
+    document.querySelector("#thing").setAttribute("rotation", `${i},0,0`);
+    document
+      .querySelector("#camera")
+      .setAttribute("position", `0,4,${4 + Math.cos(i / 100)}`);
+    window.requestAnimationFrame(render);
+    i++;
+  }
+  window.requestAnimationFrame(render);
+</script>
+```
+
+See live [demo](https://richardanaya.github.io/pbr-scene/examples/animation/index.html)

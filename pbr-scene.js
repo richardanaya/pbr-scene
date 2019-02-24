@@ -214,7 +214,7 @@ class PBRCamera extends PBRBaseElement {
   }
 
   static get observedAttributes() {
-    return [''];
+    return ['position','look-at','up'];
   }
 
   connectedCallback(){
@@ -243,7 +243,7 @@ class PBRCamera extends PBRBaseElement {
   updateCameraView(){
     if(this.camera){
       this.sceneElement.view.setViewport([0, 0, this.sceneElement.width, this.sceneElement.height]);
-      const eye = [0, 0, 4], center = [0, 0, 0], up = [0, 1, 0];
+      const eye = this.getVec3Attribute("position",[0,0,4]), center = this.getVec3Attribute("look-at",[0,0,0]), up = this.getVec3Attribute("up",[0,1,0]);
       this.camera.lookAt(eye, center, up);
       const aspect = this.sceneElement.width / this.sceneElement.height;
       const fov = aspect < 1 ? Filament.Camera$Fov.HORIZONTAL : Filament.Camera$Fov.VERTICAL;
@@ -255,7 +255,8 @@ class PBRCamera extends PBRBaseElement {
     if(this.loaded){
       let scene = this.sceneElement.scene;
       let engine = this.sceneElement.engine;
-      this.build(engine,scene);
+      let view = this.sceneElement.view;
+      this.build(engine,scene,view);
     }
   }
 }
@@ -267,7 +268,7 @@ class PBRModel extends PBRBaseElement {
   }
 
   static get observedAttributes() {
-    return ["material","albedo","mesh","roughness","metallic","normal","ao"];
+    return ["material","albedo","mesh","roughness","metallic","normal","ao","rotation","position","scale"];
   }
 
   loadMaterialTexture(engine,sampler,materialInstance,name){
@@ -297,16 +298,35 @@ class PBRModel extends PBRBaseElement {
     }
     const mesh = engine.loadFilamesh(this.getAssetAttribute("mesh"),matinstance);
     const entity = mesh.renderable;
+    this.updateTransform(engine,entity);
+    return entity;
+  }
 
-    if(this.hasAttribute("rotation")){
+  attributeChangedCallback(name){
+    if(this.entity){
+      let scene = this.sceneElement.scene;
+      let engine = this.sceneElement.engine;
+      if(name === "rotation" || name =="position" || name =="scale"){
+        this.updateTransform(engine,this.entity);
+        return;
+      }
+      scene.remove(this.entity);
+      this.entity = this.build(engine,scene);
+      scene.addEntity(this.entity);
+    }
+  }
+
+  updateTransform(engine,entity){
+    if(this.hasAttribute("rotation") || this.hasAttribute("position") || this.hasAttribute("scale")){
       let r = this.getVec3Attribute("rotation",[0,0,0]);
-      const transform = mat4.fromRotation(mat4.create(), 1, [r[0]*Math.PI/180,r[1]*Math.PI/180,r[2]*Math.PI/180]);
+      let s = this.getVec3Attribute("scale",[1,1,1]);
+      let t = this.getVec3Attribute("position",[0,0,0]);
+      const transform = mat4.fromRotationTranslationScale(mat4.create(),quat.fromEuler(quat.create(),r[0],r[1],r[2]),t,s);
       const tcm = engine.getTransformManager();
       const inst = tcm.getInstance(entity);
       tcm.setTransform(inst, transform);
       inst.delete();
     }
-    return entity;
   }
 }
 window.customElements.define('pbr-model', PBRModel);
