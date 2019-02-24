@@ -287,7 +287,17 @@ class PBRModel extends PBRBaseElement {
       this.loadMaterialTexture(engine,sampler,matinstance,"ao");
     }
     const mesh = engine.loadFilamesh(this.getAssetAttribute("mesh"),matinstance);
-    return mesh.renderable;
+    const entity = mesh.renderable;
+
+    if(this.hasAttribute("rotation")){
+      let r = this.getVec3Attribute("rotation",[0,0,0]);
+      const transform = mat4.fromRotation(mat4.create(), 1, [r[0]*Math.PI/180,r[1]*Math.PI/180,r[2]*Math.PI/180]);
+      const tcm = engine.getTransformManager();
+      const inst = tcm.getInstance(entity);
+      tcm.setTransform(inst, transform);
+      inst.delete();
+    }
+    return entity;
   }
 }
 window.customElements.define('pbr-model', PBRModel);

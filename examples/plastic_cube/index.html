@@ -2,14 +2,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.8.1/gl-matrix-min.js"></script>
 <script src="../../pbr-scene.js"></script>
 <pbr-scene width="500" height="500">
-  <pbr-asset name="c_mesh" src="cube.filamesh"></pbr-asset>
   <pbr-asset name="pbr_mat" src="../../pbr.filamat"></pbr-asset>
+  <pbr-asset name="c_mesh" src="cube.filamesh"></pbr-asset>
   <pbr-asset name="c_alb" src="plastic_albedo.jpg"></pbr-asset>
   <pbr-asset name="c_nrm" src="plastic_normal.jpg"></pbr-asset>
   <pbr-asset name="c_rgh" src="plastic_roughness.jpg"></pbr-asset>
   <pbr-sun></pbr-sun>
   <pbr-camera></pbr-camera>
   <pbr-model
+    rotation="200,200,0"
     material="pbr_mat"
     mesh="c_mesh"
     albedo="c_alb"
