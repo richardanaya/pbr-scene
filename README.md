@@ -4,9 +4,15 @@ A simple web component for using [filament](https://github.com/google/filament/)
 
 # Before you start
 
-Google created a really awesome physically based rendering library that runs everywhere with a catch that you have to convert your meshes and define materials to its `.filamesh` and `.filamat` formats. So don't be confused if you see these file formats you don't recognize. They are just generated from the tools `filamesh` and `matc` you can download here https://github.com/google/filament/releases.
+Google created a really awesome physically based rendering library with a catch that you have to convert your meshes and define materials to its `.filamesh` and `.filamat` formats. So don't be confused if you see these file formats you don't recognize. They are just generated from the tools `filamesh` and `matc` you can download here https://github.com/google/filament/releases.
 
-If you need a material shader file, just use the default `pbr.mat`, or learn how to invent your own at https://google.github.io/filament/Materials.md.html
+* `.filamesh` - a very optimized mesh file generated from an (obj,fbx,gltf,.etc);
+* `.filamat` - a compessed collection of shaders for a set of inputs for various platforms
+* `.ktx` - a very optimized image format for rendering
+
+If you need a skybox, just use the default sky map in the root `simple_skybox.ktx` and its indirect light map `simple_ibl.ktx`
+
+If you need a pbr material shader file, just use the default i have in the root of this project `pbr.mat`, or learn how to invent your own at https://google.github.io/filament/Materials.md.html
 
 # Hello cube
 
