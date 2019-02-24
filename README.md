@@ -96,7 +96,7 @@ See live [demo](https://richardanaya.github.io/pbr-scene/examples/suzanne/index.
 
 # Animation
 
-!(animated pbr scene)[animated.gif]
+![animated pbr scene](animated.gif)
 
 Just to show a basic animation using attributes and some more camera properties
 
